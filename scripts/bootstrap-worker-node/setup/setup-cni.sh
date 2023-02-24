@@ -6,7 +6,7 @@
   sudo mv runc.amd64 /usr/local/bin/runc
 
   sudo tar -xzvf containerd.tar.gz -C /usr/local
-  sudo tar -xzvf cni.tgz -C /opt/cni/bin
+  sudo tar -xzvf cni-plugins.tgz -C /opt/cni/bin
 }
 
 cat <<EOF | sudo tee /etc/systemd/system/containerd.service

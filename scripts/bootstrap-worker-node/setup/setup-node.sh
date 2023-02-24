@@ -67,9 +67,11 @@ Requires=containerd.service
 
 [Service]
 ExecStart=/usr/local/bin/kubelet \\
+  --bootstrap-kubeconfig="/var/lib/kubelet/bootstrap-kubeconfig" \\
   --config=/var/lib/kubelet/kubelet-config.yaml \\
+  --kubeconfig=/var/lib/kubelet/kubeconfig \\
+  --cert-dir=/var/lib/kubelet/pki/ \\
   --container-runtime-endpoint=unix:///var/run/containerd/containerd.sock \\
-  --kubeconfig=/var/lib/kubelet/kubelet.kubeconfig \\
   --v=2
 Restart=on-failure
 RestartSec=5

@@ -9,8 +9,8 @@
   sudo mkdir -p /var/lib/kubernetes/pki
 
   # Only copy CA keys as we'll need them again for workers.
-  sudo cp certs-master/ca.crt certs-master/ca.key /var/lib/kubernetes/pki
-  for c in kube-apiserver service-account apiserver-kubelet-client etcd-server kube-scheduler kube-controller-manager
+  sudo cp certs-master/ca.crt certs-master/ca.key certs-master/ca-proxy.crt /var/lib/kubernetes/pki
+  for c in kube-apiserver service-account apiserver-kubelet-client etcd-server kube-scheduler kube-controller-manager proxy-client
   do
     sudo mv "certs-master/$c.crt" "certs-master/$c.key" /var/lib/kubernetes/pki/
   done
@@ -61,6 +61,14 @@ ExecStart=/usr/local/bin/kube-apiserver \\
   --service-node-port-range=30000-32767 \\
   --tls-cert-file=/var/lib/kubernetes/pki/kube-apiserver.crt \\
   --tls-private-key-file=/var/lib/kubernetes/pki/kube-apiserver.key \\
+  --requestheader-client-ca-file=/var/lib/kubernetes/pki/ca-proxy.crt \\
+  --proxy-client-cert-file=/var/lib/kubernetes/pki/proxy-client.crt \\
+  --proxy-client-key-file=/var/lib/kubernetes/pki/proxy-client.key \\
+  --requestheader-allowed-names=aggregator,system:serviceaccount:kube-system:metrics-server \\
+  --requestheader-extra-headers-prefix=X-Remote-Extra- \\
+  --requestheader-group-headers=X-Remote-Group \\
+  --requestheader-username-headers=X-Remote-User \\
+  --enable-aggregator-routing=true \\
   --v=2
 Restart=on-failure
 RestartSec=5

@@ -32,7 +32,7 @@ bootstrap-nlb:
 	make -C scripts/bootstrap-nlb all
 
 bootstrap-worker-node:
-	make -C scripts/bootstrap-worker-node-alt all
+	make -C scripts/bootstrap-worker-node all
 
 misc:
 	make -C scripts/configure-kubectl all

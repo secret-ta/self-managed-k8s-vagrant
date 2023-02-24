@@ -3,7 +3,7 @@ for instance in master-1 master-2; do
    files=(ca.crt ca.key kube-apiserver.key
      kube-apiserver.crt apiserver-kubelet-client.crt apiserver-kubelet-client.key service-account.key 
      service-account.crt etcd-server.key etcd-server.crt kube-controller-manager.key kube-controller-manager.crt 
-     kube-scheduler.key kube-scheduler.crt)
+     kube-scheduler.key kube-scheduler.crt ca-proxy.crt proxy-client.crt proxy-client.key)
 
     for file in "${files[@]}"; do
         cp generated/${file} generated/certs-master/

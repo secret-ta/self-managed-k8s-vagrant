@@ -1,4 +1,4 @@
-all: ca admin controller-manager kube-scheduler service-account api-server etcd kubelet kube-proxy worker
+all: ca ca-proxy admin controller-manager kube-scheduler service-account api-server etcd kubelet kube-proxy worker proxy-client
 	mkdir generated
 	mv *.csr generated
 	mv *crt generated
@@ -11,6 +11,12 @@ all: ca admin controller-manager kube-scheduler service-account api-server etcd 
 	
 ca:
 	sh ca.sh
+
+ca-proxy:
+	sh ca-proxy.sh
+
+proxy-client:
+	sh proxy-client.sh
 
 admin:
 	sh admin.sh
