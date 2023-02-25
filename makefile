@@ -40,4 +40,7 @@ misc:
 	make -C scripts/rbac-apiserver-to-kubelet all
 	make -C scripts/deploy-dns-addon all
 
-
+download-binaries:
+	make -C scripts/bootstrap-control-plane dl
+	make -C scripts/bootstrap-etcd dl
+	make -C scripts/bootstrap-worker-node dl

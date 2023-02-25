@@ -1,1 +1,14 @@
+*
+!/**/
+!*.*
+*.tgz
+*.tar.gz
+*.amd64
+*.crt
+*.csr
+*.key
+*.srl
+*.cnf
+*.kubeconfig
+scripts/encryption-config/encryption-config.yaml
 *.vagrant

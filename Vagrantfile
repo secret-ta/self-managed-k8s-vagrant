@@ -95,7 +95,7 @@ Vagrant.configure("2") do |config|
       node.vm.provider "virtualbox" do |vb|
         # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
         vb.name = "kubernetes-ha-worker-#{i}"
-        vb.memory = 1024
+        vb.memory = 2024
         vb.cpus = 1
       end
       node.vm.hostname = "worker-#{i}"
