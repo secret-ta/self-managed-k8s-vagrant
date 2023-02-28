@@ -40,6 +40,7 @@ misc:
 	make -C scripts/rbac-apiserver-to-kubelet all
 	make -C scripts/deploy-dns-addon all
 	make -C scripts/k8s-dashboard all
+	make -C scripts/setup-ingress-controller all
 
 download-binaries:
 	make -C scripts/bootstrap-control-plane dl
