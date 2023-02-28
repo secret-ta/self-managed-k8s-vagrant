@@ -39,6 +39,7 @@ misc:
 	make -C scripts/provision-pod-network all
 	make -C scripts/rbac-apiserver-to-kubelet all
 	make -C scripts/deploy-dns-addon all
+	make -C scripts/k8s-dashboard all
 
 download-binaries:
 	make -C scripts/bootstrap-control-plane dl
