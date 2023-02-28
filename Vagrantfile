@@ -72,6 +72,7 @@ Vagrant.configure("2") do |config|
       node.vm.network :private_network, ip: IP_NW + "#{MASTER_IP_START + i}"
       node.vm.network "forwarded_port", guest: 22, host: "#{2710 + i}"
       provision_kubernetes_node node
+      node.vm.provision "setup-route", :type => "shell", :path => "scripts/setup-route.sh", run: 'always'
     end
   end
 
