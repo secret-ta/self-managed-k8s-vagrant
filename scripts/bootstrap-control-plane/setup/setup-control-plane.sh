@@ -25,6 +25,20 @@ MASTER_2=$(dig +short master-2)
 POD_CIDR=10.244.0.0/16
 SERVICE_CIDR=10.96.0.0/16
 
+# Configure networking so that the master node can reach services and pods.
+cat <<EOF | sudo tee /etc/netplan/route-pod-service.yaml
+network:
+  ethernets:
+    enp0s8:
+      routes:
+        - to: ${POD_CIDR}
+          via: 192.168.56.2${HOSTNAME: -1}
+        - to: ${SERVICE_CIDR}
+          via: 192.168.56.2${HOSTNAME: -1}
+  version: 2
+EOF
+sudo netplan apply
+
 cat <<EOF | sudo tee /etc/systemd/system/kube-apiserver.service
 [Unit]
 Description=Kubernetes API Server
