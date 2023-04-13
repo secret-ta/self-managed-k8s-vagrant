@@ -61,12 +61,8 @@ Vagrant.configure("2") do |config|
       node.vm.provider "virtualbox" do |vb|
         vb.name = "kubernetes-ha-master-#{i}"
         # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
-        if i == 1
-          vb.memory = 2048    # More needed to run e2e tests at end
-        else
-          vb.memory = 1024
-        end
-        vb.cpus = 2
+        vb.memory = 2048    # More needed to run e2e tests at end
+        vb.cpus = 3
       end
       node.vm.hostname = "master-#{i}"
       node.vm.network :private_network, ip: IP_NW + "#{MASTER_IP_START + i}"
@@ -95,8 +91,8 @@ Vagrant.configure("2") do |config|
       node.vm.provider "virtualbox" do |vb|
         # vb.customize ["modifyvm", :id, "--natdnsproxy1", "on"]
         vb.name = "kubernetes-ha-worker-#{i}"
-        vb.memory = 2024
-        vb.cpus = 1
+        vb.memory = 2048
+        vb.cpus = 2
       end
       node.vm.hostname = "worker-#{i}"
       node.vm.network :private_network, ip: IP_NW + "#{NODE_IP_START + i}"

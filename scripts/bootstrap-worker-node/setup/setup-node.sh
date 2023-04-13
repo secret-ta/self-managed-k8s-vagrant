@@ -115,8 +115,3 @@ EOF
   sudo systemctl enable kubelet kube-proxy
   sudo systemctl start kubelet kube-proxy
 }
-
-while ! (sudo systemctl -q is-active kubelet.service);
-do
-echo waiting kubelet;
-done
